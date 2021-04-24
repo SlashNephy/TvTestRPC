@@ -12,9 +12,6 @@
 #include <tchar.h>
 #define TVTEST_PLUGIN_CLASS_IMPLEMENT	// プラグインをクラスとして実装
 #include "TVTestPlugin.h"
-#include "discord_rpc.h"
 #include "strconv.h"
-
-
 
 // プログラムに必要な追加ヘッダーをここで参照してください

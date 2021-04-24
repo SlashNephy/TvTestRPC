@@ -6,11 +6,13 @@
 #include <shlwapi.h>
 #include "resource.h"
 #include <vector>
-#pragma comment(lib,"shlwapi.lib")
+#include "discord.h"
+#pragma comment(lib, "shlwapi.lib")
 
 class CMyPlugin : public TVTest::CTVTestPlugin
 {
-	DiscordEventHandlers handlers{};
+	discord::Core* core{};
+	
 	static LRESULT CALLBACK EventCallback(UINT Event, LPARAM lParam1, LPARAM lParam2, void* pClientData);
 	static INT_PTR CALLBACK SettingsDlgProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam, void* pClientData);
 	bool ShowDialog(HWND hwndOwner);
@@ -22,7 +24,6 @@ class CMyPlugin : public TVTest::CTVTestPlugin
 	bool InitSettings();
 	bool pluginState = false;
 	void SaveConf();
-	void InitDiscord();
 	void UpdateState();
 	const std::vector<WORD> knownIds = { 32736, 32737, 32738, 32739, 32740, 32741, 3274, 32742, 32327, 32375, 32391};
 
@@ -41,18 +42,30 @@ public:
 		pInfo->pszPluginName = L"TvTest RPC";
 		pInfo->pszCopyright = L"(c) 2019-2020 noriokun4649";
 		pInfo->pszDescription = L"DiscordRPCをTvTestで実現します。Discordで視聴中のチャンネルなどの情報が通知されます。";
+		
 		return true;
 	}
 
 	bool Initialize() override
 	{
-		InitDiscord();
+		discord::Core::Create(577065126084214816, DiscordCreateFlags_Default, &core);
+	    if (!core) {
+	        return false;
+	    }
+
+		core->SetLogHook(
+			discord::LogLevel::Info, [this](discord::LogLevel level, const char* message) {
+				TCHAR buf[256];
+				MultiByteToWideChar(CP_OEMCP, MB_PRECOMPOSED, message, strlen(message), buf, sizeof buf / 2);
+				m_pApp->AddLog(buf);
+	    });
+	
 		m_pApp->SetEventCallback(EventCallback, this);
 		return true;
 	}
+	
 	bool Finalize() override
 	{
-		Discord_Shutdown();
 		SaveConf();
 		return true;
 	}
@@ -69,15 +82,10 @@ bool CMyPlugin::InitSettings() {
 	return true;
 }
 
-void CMyPlugin::InitDiscord()
-{
-	Discord_Initialize("577065126084214816", &handlers, 1, NULL);
-}
-
 void CMyPlugin::UpdateState()
 {
-	DiscordRichPresence discordPresence;
-	memset(&discordPresence, 0, sizeof(discordPresence));
+	discord::Activity activity{};
+    
 	TVTest::ProgramInfo Info;
 	TVTest::ServiceInfo Service;
 	TVTest::ChannelInfo ChannelInfo;
@@ -96,12 +104,20 @@ void CMyPlugin::UpdateState()
 	std::string channelName;
 	std::string eventNamed;
 
+	activity.SetDetails(channelName.c_str());
+	activity.SetState(eventNamed.c_str());
+	activity.GetAssets().SetLargeText(channelName.c_str());
+	
 	if (m_pApp->GetCurrentProgramInfo(&Info)) {
 		eventNamed = wide_to_utf8(Info.pszEventName);
+		
 		auto start = SystemTime2Timet(Info.StartTime);
-		auto end = SystemTime2Timet(Info.StartTime) + Info.Duration;
-		discordPresence.startTimestamp = start;
-		if (!conf_TimeMode) discordPresence.endTimestamp = end;
+		activity.GetTimestamps().SetStart(start);
+		
+		if (!conf_TimeMode) {
+			auto end = SystemTime2Timet(Info.StartTime) + Info.Duration;
+			activity.GetTimestamps().SetEnd(end);
+		}
 	}
 
 	if (m_pApp->GetServiceInfo(0, &Service) && m_pApp->GetCurrentChannelInfo(&ChannelInfo)) {
@@ -117,29 +133,17 @@ void CMyPlugin::UpdateState()
 
 		if (isId && conf_LogoMode) {
 			auto netId = std::to_string(id);
-			discordPresence.largeImageKey = netId.c_str();
-			discordPresence.smallImageKey = "tvtest";
-			discordPresence.smallImageText = "TvTest";
+			activity.GetAssets().SetLargeImage(netId.c_str());
+			activity.GetAssets().SetSmallImage("tvtest");
+			activity.GetAssets().SetSmallText("TVTest");
 		}
 		else {
-			discordPresence.largeImageKey = "tvtest";
-			discordPresence.smallImageKey = "";
-			discordPresence.smallImageText = "";
+			activity.GetAssets().SetLargeImage("tvtest");
 		}
 	}
 
-	discordPresence.details = channelName.c_str();
-	discordPresence.largeImageText = channelName.c_str();
-	discordPresence.state = eventNamed.c_str();
-	discordPresence.partyId = "";
-	discordPresence.partySize = 0;
-	discordPresence.partyMax = 0;
-	discordPresence.matchSecret = "";
-	discordPresence.joinSecret = "";
-	discordPresence.spectateSecret = "";
-	discordPresence.instance = 0;
-	Discord_UpdatePresence(&discordPresence);
-
+	core->ActivityManager().UpdateActivity(activity, [](discord::Result) {});
+	core->RunCallbacks();
 }
 
 void CMyPlugin::SaveConf() {
@@ -221,7 +225,8 @@ LRESULT CALLBACK CMyPlugin::EventCallback(UINT Event, LPARAM lParam1, LPARAM lPa
 		else
 		{
 			pThis->pluginState = false;
-			Discord_ClearPresence();
+			
+			pThis->core->ActivityManager().ClearActivity([](discord::Result) {});
 		}
 		return TRUE;
 	case TVTest::EVENT_SERVICECHANGE:
