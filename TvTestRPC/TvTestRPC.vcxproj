@@ -92,7 +92,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -105,6 +105,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>discord_game_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)discord-game-sdk\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>$(ProjectDir)Exports.def</ModuleDefinitionFile>
+      <ShowProgress>NotSet</ShowProgress>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkStatus>false</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,11 +126,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>discord_game_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)discord-game-sdk\lib\x86_64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>$(ProjectDir)Exports.def</ModuleDefinitionFile>
+      <ShowProgress>NotSet</ShowProgress>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkStatus>false</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -146,13 +154,15 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>discord_game_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)discord-game-sdk\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(ProjectDir)Exports.def</ModuleDefinitionFile>
+      <ShowProgress>NotSet</ShowProgress>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkStatus>false</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -170,12 +180,34 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>discord_game_sdk.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)discord-game-sdk\lib\x86_64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>$(ProjectDir)Exports.def</ModuleDefinitionFile>
+      <ShowProgress>NotSet</ShowProgress>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkStatus>false</LinkStatus>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\discord-game-sdk\achievement_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\activity_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\application_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\core.h" />
+    <ClInclude Include="..\discord-game-sdk\discord.h" />
+    <ClInclude Include="..\discord-game-sdk\event.h" />
+    <ClInclude Include="..\discord-game-sdk\ffi.h" />
+    <ClInclude Include="..\discord-game-sdk\image_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\lobby_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\network_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\overlay_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\relationship_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\storage_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\store_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\types.h" />
+    <ClInclude Include="..\discord-game-sdk\user_manager.h" />
+    <ClInclude Include="..\discord-game-sdk\voice_manager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="strconv.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TVTestPlugin.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\discord-game-sdk\achievement_manager.cpp" />
@@ -201,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TvTestRPC.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Exports.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
