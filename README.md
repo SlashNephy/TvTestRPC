@@ -1,6 +1,6 @@
 # TvTestRPC
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/SlashNephy/TvTestRPC/latest?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/actions/workflows/latest.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SlashNephy/TvTestRPC/latest.yml?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/actions/workflows/latest.yml)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SlashNephy/TvTestRPC?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/releases)
 
 TVTest で Discord Rich Presence を使えるようにするプラグインです。(TVTest ver.0.6.0 or later)
@@ -11,7 +11,7 @@ TVTest で Discord Rich Presence を使えるようにするプラグインで�
 
 ビルド済み成果物は以下からダウンロードできます。
 
-- ワークフロー [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/SlashNephy/TvTestRPC/latest?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/actions/workflows/latest.yml) のビルド履歴 -> Artifacts
+- ワークフロー [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SlashNephy/TvTestRPC/latest.yml?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/actions/workflows/latest.yml) のビルド履歴 -> Artifacts
 - [![GitHub release (latest by date)](https://img.shields.io/github/v/release/SlashNephy/TvTestRPC?style=flat-square)](https://github.com/SlashNephy/TvTestRPC/releases)
 
 ## Features
