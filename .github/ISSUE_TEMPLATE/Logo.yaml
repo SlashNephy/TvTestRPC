@@ -28,7 +28,7 @@ body:
     id: service-id
     attributes:
       label: サービス ID
-      description: 不明な場合は http://soranikakaruhashi.blog.fc2.com/blog-entry-71.html で調べてください。
+      description: 10進数で入力してください。不明な場合は http://soranikakaruhashi.blog.fc2.com/blog-entry-71.html で調べてください。
     validations:
       required: true
   - type: input
