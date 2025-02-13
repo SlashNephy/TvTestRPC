@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "stdafx.h"
 
@@ -168,6 +168,52 @@ inline const char* GetGRServiceLogoKey(const WORD serviceId, const wchar_t* serv
     case 2088: // 近畿広域: 読売テレビ
         return "gr_2088";
 
+	case 4112: // 北海道域: HBC 北海道放送
+    case 10256: // 札幌
+    case 11280: // 函館
+    case 12304: // 旭川
+    case 13328: // 帯広
+    case 14352: // 釧路
+    case 15376: // 北見
+    case 16400: // 室蘭
+        return "gr_4112";
+    case 4120: // 北海道域: STV 札幌テレビ
+    case 10264: // 札幌
+    case 11288: // 函館
+    case 12312: // 旭川
+    case 13336: // 帯広
+    case 14360: // 釧路
+    case 15384: // 北見
+    case 16408: // 室蘭
+        return "gr_4120";
+    case 4128: // 北海道域: HTB 北海道テレビ
+    case 10272: // 札幌
+    case 11296: // 函館
+    case 12320: // 旭川
+    case 13344: // 帯広
+    case 14368: // 釧路
+    case 15392: // 北見
+    case 16416: // 室蘭
+        return "gr_4128";
+    case 4136: // 北海道域: UHB 北海道文化放送
+    case 10280: // 札幌
+    case 11304: // 函館
+    case 12328: // 旭川
+    case 13352: // 帯広
+    case 14376: // 釧路
+    case 15400: // 北見
+    case 16424: // 室蘭
+        return "gr_4136";
+    case 4144: // 北海道域: TVh テレビ北海道
+    case 10288: // 札幌
+    case 11312: // 函館
+    case 12336: // 旭川
+    case 13360: // 帯広
+    case 14384: // 釧路
+    case 15408: // 北見
+    case 16432: // 室蘭
+        return "gr_4144";
+
     case 17440: // 宮城: ミヤギテレビ
         return "gr_17440";
     case 17448: // 宮城: KHB 東日本放送
@@ -186,6 +232,26 @@ inline const char* GetGRServiceLogoKey(const WORD serviceId, const wchar_t* serv
     case 24696: // 神奈川: イッツコムch11 (CATV)
         return "gr_24680";
 
+    case 27704: // 千葉: チバテレビ
+        return "gr_27704";
+
+    case 29752: // 埼玉: テレ玉
+        return "gr_29752";
+
+    case 31760: // 新潟: BSN 新潟放送
+        return "gr_31760";
+    case 31768: // 新潟: NST 新潟総合テレビ
+        return "gr_31768";
+    case 31776: // 新潟: TeNY テレビ新潟
+        return "gr_31776";
+    case 31784: // 新潟: UX 新潟テレビ21
+        return "gr_31784";
+
+    case 32776: // 山梨: YBS 山梨放送
+        return "gr_32776";
+    case 32792: // 山梨: UTY テレビ山梨
+        return "gr_32792";
+
     case 34840: // 石川: HAB
         return "gr_34840";
 
@@ -200,6 +266,9 @@ inline const char* GetGRServiceLogoKey(const WORD serviceId, const wchar_t* serv
 
     case 41008: // 大阪: テレビ大阪
         return "gr_41008";
+
+    case 42032: // 京都: KBS 京都放送
+        return "gr_42032";
 
     case 43056: // 兵庫: サンテレビ
         return "gr_43056";
