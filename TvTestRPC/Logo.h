@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "stdafx.h"
 
@@ -75,7 +75,7 @@ inline bool IsNHKGService(const WORD serviceId, const wchar_t* serviceName)
 }
 
 /*
- * 対象のサービスが NHK教育 であるかどうか判定する
+ * 対象のサービスが NHKEテレ であるかどうか判定する
  */
 inline bool isNHKEService(const WORD serviceId, const wchar_t* serviceName)
 {
@@ -137,7 +137,7 @@ inline const char* GetGRServiceLogoKey(const WORD serviceId, const wchar_t* serv
         return LOGO_GR_NHKG;
     }
 
-    // 全国: NHK教育
+    // 全国: NHKEテレ
     if (isNHKEService(serviceId, serviceName))
     {
         return LOGO_GR_NHKE;
