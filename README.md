@@ -36,6 +36,8 @@ TVTest で Discord Rich Presence を使えるようにするプラグインで�
     日テレ, TBS, テレビ朝日, テレビ東京, フジテレビ  
   - 近畿広域  
     MBS毎日放送, ABCテレビ, 関西テレビ, 読売テレビ  
+  - 北海道域  
+    HBC 北海道放送, STV 札幌テレビ, HTB 北海道テレビ, UHB 北海道文化放送, TVh テレビ北海道
 
   - 宮城  
     ミヤギテレビ, KHB, TBC, 仙台放送
@@ -44,6 +46,14 @@ TVTest で Discord Rich Presence を使えるようにするプラグインで�
   - 神奈川  
     tvk  
     イッツコム (CATV)
+  - 千葉  
+    チバテレビ
+  - 埼玉  
+    テレ玉
+  - 新潟  
+    BSN 新潟放送, NST 新潟総合テレビ, TeNY テレビ新潟, UX 新潟テレビ21
+  - 山梨  
+    YBS 山梨放送, UTY テレビ山梨
   - 石川  
     HAB
   - 富山  
@@ -51,6 +61,8 @@ TVTest で Discord Rich Presence を使えるようにするプラグインで�
     コミュチャン (CATV)
   - 大阪  
     テレビ大阪
+  - 京都  
+    KBS 京都放送
   - 兵庫  
     サンテレビ
   - 広島  
