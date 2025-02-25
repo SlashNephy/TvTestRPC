@@ -30,6 +30,8 @@ static DiscordActivity CreatePresence(
     DiscordActivity Activity{};
     memset(&Activity, 0, sizeof Activity);
 
+    Activity.type = DiscordActivityType_Watching;
+
     // 番組データがあるなら時間情報を付与する
     if (Program.has_value())
     {
