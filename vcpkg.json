@@ -6,5 +6,6 @@
   "homepage": "https://github.com/SlashNephy/TvTestRPC",
   "dependencies": [
     "discord-game-sdk"
-  ]
+  ],
+  "builtin-baseline": "6784dd45fa9a97ce6232f57d755e029b4db3eb81"
 }
