@@ -48,7 +48,7 @@ public:
         pInfo->Type = TVTest::PLUGIN_TYPE_NORMAL;
         pInfo->Flags = 0;
         pInfo->pszPluginName = L"Discord Rich Presence";
-        pInfo->pszCopyright = L"© 2021 Nep, 2019-2020 noriokun4649";
+        pInfo->pszCopyright = L"© 2025 SlashNephy, 2019-2020 noriokun4649";
         pInfo->pszDescription = L"Discord Rich Presence を表示します。";
 
         return true;
