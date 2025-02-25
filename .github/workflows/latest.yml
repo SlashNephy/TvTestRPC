@@ -25,12 +25,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v7
-        with:
-          setupOnly: true
-          vcpkgGitCommitId: d8d61c941c333a147edffdcbdc9964dc0c0962f5
-          vcpkgTriplet: ${{ matrix.platform }}-windows
-          appendedCacheKey: ${{ hashFiles( '**/vcpkg.json' ) }}
+        uses: lukka/run-vcpkg@v11
 
       - name: Install MSBuild integration
         shell: powershell
