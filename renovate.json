@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "includeForks": true,
+  "forkProcessing": "enabled",
   "extends": [
     "local>SlashNephy/renovate-config"
   ]
