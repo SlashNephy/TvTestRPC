@@ -2,6 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "includeForks": true,
   "extends": [
-    "github>SlashNephy/.github:renovate-config"
+    "local>SlashNephy/renovate-config"
   ]
 }
